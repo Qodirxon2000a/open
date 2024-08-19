@@ -50,7 +50,7 @@ const FileUpload = () => {
         setSelectedFile(null); // Fayl yuborilgandan so'ng qiymatini 0 ga tushirish
         setCardNumber(""); // Karta raqamini tozalash
         setPhoneNumber(""); // Telefon raqamini tozalash
-        alert("Fayl muvaffaqiyatli yuborildi!"); // Alert xabarini ko'rsatish
+        alert("Fayl muvaffaqiyatli yuborildi! Tolov 24soat ichida analga oshadi!"); // Alert xabarini ko'rsatish
         window.location.reload(); // Sahifani qayta yuklash
       } else {
         setUploadStatus("Faylni botga yuborishda xatolik yuz berdi.");
