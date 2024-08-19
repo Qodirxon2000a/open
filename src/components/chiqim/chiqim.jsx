@@ -18,12 +18,16 @@ const FileUpload = () => {
 
   // Karta raqami o'zgarishini boshqarish
   const onCardNumberChange = (event) => {
-    setCardNumber(event.target.value);
+    const value = event.target.value.replace(/\D/g, ''); // Faqat raqamlarni qabul qilish
+    setCardNumber(value);
   };
 
   // Telefon raqami o'zgarishini boshqarish
   const onPhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value);
+    const value = event.target.value.replace(/[^+\d]/g, ''); // Faqat + va raqamlarni qabul qilish
+    if (value.startsWith("+998") || value === "") {
+      setPhoneNumber(value);
+    }
   };
 
   // Faylni yuklash va botga yuborish uchun
@@ -73,6 +77,9 @@ const FileUpload = () => {
         value={cardNumber} 
         onChange={onCardNumberChange} 
         className="text-input"
+        maxLength="16" // Maksimal uzunlik 16 raqam
+        pattern="\d{16}" // 16 raqamdan iborat
+        title="Karta raqami 16 ta raqamdan iborat bo'lishi kerak."
       />
       <input 
         type="text" 
@@ -80,6 +87,8 @@ const FileUpload = () => {
         value={phoneNumber} 
         onChange={onPhoneNumberChange} 
         className="text-input"
+        pattern="\+998\d{9}" // O'zbekiston telefon raqami
+        title="Telefon raqam O'zbekiston telefon raqamiga mos kelishi kerak (+998XXXXXXXXX)."
       />
       <button onClick={onFileUpload} className="upload-button">Yuborish</button>
       <p className="status-message">{uploadStatus}</p>
